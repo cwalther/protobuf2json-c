@@ -7,8 +7,12 @@
  */
 
 #include "task.h"
-#include "test.pb-c.h"
 #include "protobuf2json.h"
+
+#include "common.pb-c.h"
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
+#include "oneof.pb-c.h"
+#endif
 
 #include "failed-alloc-helper.h"
 
@@ -95,6 +99,7 @@ TEST_IMPL(protobuf2json_string__default_values) {
   RETURN_OK();
 }
 
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
 TEST_IMPL(protobuf2json_string__oneof) {
   int result;
 
@@ -112,6 +117,8 @@ TEST_IMPL(protobuf2json_string__oneof) {
     json_string,
     "{}"
   );
+
+  printf("%s\n", json_string);
 
   free(json_string);
 
@@ -150,6 +157,7 @@ TEST_IMPL(protobuf2json_string__oneof) {
 
   RETURN_OK();
 }
+#endif
 
 TEST_IMPL(protobuf2json_string__error_in_nested_message) {
   int result;

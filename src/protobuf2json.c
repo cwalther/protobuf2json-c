@@ -198,6 +198,7 @@ static int protobuf2json_process_message(
         );
       }
     } else if (field_descriptor->label == PROTOBUF_C_LABEL_OPTIONAL) {
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
       if (field_descriptor->flags & PROTOBUF_C_FIELD_FLAG_ONEOF) {
         if (*(uint32_t *)protobuf_value_quantifier == field_descriptor->id) {
           if (field_descriptor->type == PROTOBUF_C_TYPE_MESSAGE || field_descriptor->type == PROTOBUF_C_TYPE_STRING) {
@@ -209,6 +210,7 @@ static int protobuf2json_process_message(
           continue;
         }
       }
+#endif
 
       protobuf_c_boolean is_set = 0;
 

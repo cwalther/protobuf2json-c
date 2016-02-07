@@ -7,8 +7,9 @@
  */
 
 #include "task.h"
-#include "test.pb-c.h"
 #include "protobuf2json.h"
+
+#include "common.pb-c.h"
 
 #include <libgen.h>
 

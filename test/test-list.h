@@ -6,6 +6,8 @@
  * See LICENSE for details.
  */
 
+#include "protobuf2json.h"
+
 TEST_DECLARE(protobuf2json_file__success)
 TEST_DECLARE(protobuf2json_file__error_alloc)
 TEST_DECLARE(protobuf2json_file__error_cannot_open_null_file)
@@ -16,7 +18,9 @@ TEST_DECLARE(protobuf2json_file__error_cannot_dump_file)
 TEST_DECLARE(protobuf2json_string__required_field)
 TEST_DECLARE(protobuf2json_string__optional_field)
 TEST_DECLARE(protobuf2json_string__default_values)
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
 TEST_DECLARE(protobuf2json_string__oneof)
+#endif
 TEST_DECLARE(protobuf2json_string__error_in_nested_message)
 TEST_DECLARE(protobuf2json_string__error_cannot_create_json_object)
 TEST_DECLARE(protobuf2json_string__error_cannot_create_json_value)
@@ -72,7 +76,9 @@ TASK_LIST_START
   TEST_ENTRY(protobuf2json_string__required_field)
   TEST_ENTRY(protobuf2json_string__optional_field)
   TEST_ENTRY(protobuf2json_string__default_values)
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
   TEST_ENTRY(protobuf2json_string__oneof)
+#endif
   TEST_ENTRY(protobuf2json_string__error_in_nested_message)
   TEST_ENTRY(protobuf2json_string__error_cannot_create_json_object)
   TEST_ENTRY(protobuf2json_string__error_cannot_create_json_value)

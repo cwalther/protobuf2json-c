@@ -7,7 +7,8 @@
 # protoc
 
 BUILT_SOURCES =
-BUILT_SOURCES += test.pb-c.c
+BUILT_SOURCES += common.pb-c.c
+BUILT_SOURCES += oneof.pb-c.c
 
 MOSTLYCLEANFILES =
 MOSTLYCLEANFILES += *.pb-c.[ch]
@@ -49,7 +50,9 @@ run_tests_SOURCES = run-tests.c \
                     runner.c \
                     runner.h \
                     task.h \
-                    test.pb-c.c
+                    common.pb-c.c
+
+run_tests_SOURCES += oneof.pb-c.c
 
 if WINNT
   run_tests_SOURCES += runner-win.c \
@@ -67,7 +70,9 @@ run_benchmarks_SOURCES = run-benchmarks.c \
                          runner.c \
                          runner.h \
                          task.h \
-                         test.pb-c.c
+                         common.pb-c.c
+
+run_benchmarks_SOURCES += oneof.pb-c.c
 
 if WINNT
   run_benchmarks_SOURCES += runner-win.c \
@@ -80,4 +85,6 @@ endif
 # run-tmp
 
 run_tmp_SOURCES = run-tmp.c \
-                  test.pb-c.c
+                  common.pb-c.c
+
+run_tmp_SOURCES += oneof.pb-c.c

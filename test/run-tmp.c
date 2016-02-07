@@ -7,13 +7,18 @@
  */
 
 #include "task.h"
-#include "test.pb-c.h"
 #include "protobuf2json.h"
+
+#include "common.pb-c.h"
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
+#include "oneof.pb-c.h"
+#endif
 
 #include <libgen.h> /* dirname */
 
 char executable_path[MAXPATHLEN] = {0};
 
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
 void oneof(void) {
   int result;
 
@@ -45,6 +50,7 @@ void oneof(void) {
   printf("Debug: %s\n", json_string);
   free(json_string);
 }
+#endif
 
 void person__debug(void) {
   int result;
@@ -360,7 +366,12 @@ void read_file_success(void) {
 int main(int argc, char **argv) {
   strncpy(executable_path, argv[0], sizeof(executable_path) - 1);
 
+  printf("PROTOBUF_C_VERSION_NUMBER=%d\n", PROTOBUF_C_VERSION_NUMBER);
+  printf("protobuf_c_version_number()=%d\n", protobuf_c_version_number());
+
+#if defined(PROTOBUF2JSON_ONEOF_SUPPORTED) && PROTOBUF2JSON_ONEOF_SUPPORTED
   oneof();
+#endif
 
   person__debug();
 
