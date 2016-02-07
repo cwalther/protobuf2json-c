@@ -44,7 +44,7 @@ matrix:
   include:
     - os: linux
       compiler: gcc
-      env: PROTOBUF_VERSION=2.5.0 PROTOBUF_C_VERSION=1.0.2
+      env: PROTOBUF_VERSION=2.5.0 PROTOBUF_C_VERSION=1.0.2 WITHOUT_ONEOF=1
 before_install:
   - ./.travis.before_install.sh
 install:
@@ -53,6 +53,7 @@ install:
   - if [ "x$MY_SANITIZE" != "x" ]; then ./configure --enable-my-sanitize=$MY_SANITIZE; fi
   - if [ "x$MY_VALGRIND" = "x1" ]; then ./configure --enable-my-valgrind; fi
   - if [ "x$MY_COVERAGE" = "x1" ]; then ./configure --enable-my-coverage; fi
+  - if [ "x$WITHOUT_ONEOF" != "x" ]; then ./configure --without-protobuf-c-oneof; fi
   - make
 script:
   - make cppcheck

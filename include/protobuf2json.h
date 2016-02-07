@@ -12,6 +12,8 @@
 #include <google/protobuf-c/protobuf-c.h>
 #include <jansson.h>
 
+#include "protobuf2json_config.h"
+
 /* Common errors */
 #define PROTOBUF2JSON_ERR_CANNOT_ALLOCATE_MEMORY -001
 #define PROTOBUF2JSON_ERR_UNSUPPORTED_FIELD_TYPE -002
@@ -38,12 +40,6 @@
 #define PROTOBUF2JSON_ERR_IS_NOT_STRING          -407
 #define PROTOBUF2JSON_ERR_REQUIRED_IS_MISSING    -408
 /*#define PROTOBUF2JSON_ERR_DUPLICATE_FIELD      -???*/
-
-#if PROTOBUF_C_VERSION_NUMBER >= 1001000
-#define PROTOBUF2JSON_ONEOF_SUPPORTED 1
-#else
-#define PROTOBUF2JSON_ONEOF_SUPPORTED 0
-#endif
 
 #ifdef __cplusplus
 extern "C" {

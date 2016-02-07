@@ -39,6 +39,11 @@ MY_COVERAGE
 
 AC_MSG_RESULT([])
 
-AC_CONFIG_FILES([Makefile src/Makefile test/Makefile])
+AC_CONFIG_FILES([
+  Makefile
+  include/protobuf2json_config.h
+  src/Makefile
+  test/Makefile
+])
 
 AC_OUTPUT

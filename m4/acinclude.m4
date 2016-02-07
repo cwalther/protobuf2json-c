@@ -47,6 +47,21 @@ AC_DEFUN([AX_PROTOBUF_C],
   AC_SUBST([PROTOBUF_C_LIBS])
   AC_SUBST([PROTOBUF_C_CFLAGS])
   AC_SUBST([PROTOBUF_C_COMPILER])
+
+  AC_ARG_WITH([oneof], AC_HELP_STRING([--without-oneof], [do not include oneof support]))
+
+  AM_CONDITIONAL([ENABLE_ONEOF], [test "x$with_oneof" != "xno"])
+
+  if test "x$with_oneof" != "xno" ; then
+    AC_MSG_RESULT([protobuf oneof: supported])
+    ENABLE_ONEOF=1
+  else
+    AC_MSG_RESULT([protobuf oneof: not supported])
+    ENABLE_ONEOF=0
+  fi
+
+  AC_SUBST([ENABLE_ONEOF])
+  AC_SUBST([with_oneof])
 ])
 
 AC_DEFUN([AX_LIBJANSSON],
